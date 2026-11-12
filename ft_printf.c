@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/12 18:59:15 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/12 19:32:54 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ int	ft_isflag(char c)
 int	ft_printf(const char *s, ...)
 {
 	int		i;
+	int		len;
 	va_list	args;
 
 	va_start(args, s);
+	len = 0;
 	i = 0;
 	while (s[i])
 	{
@@ -42,47 +44,48 @@ int	ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == 's')
 			{
-				ft_putstr_fd(va_arg(args, char *), 1);
+				ft_putstr_fd(va_arg(args, char *), 1, &len);
 			}
 			else if (s[i + 1] == 'c')
 			{
-				ft_putchar_fd(va_arg(args, int), 1);
+				ft_putchar_fd(va_arg(args, int), 1, &len);
 			}
 			else if (s[i + 1] == 'd' || (s[i + 1] == 'i'))
 			{
-				ft_putnbr_fd(va_arg(args, int), 1);
+				ft_putnbr_fd(va_arg(args, int), 1, &len);
 			}
 			else if (s[i + 1] == 'u')
 			{
-				ft_putnbr_fd(va_arg(args, unsigned int), 1);
+				ft_putnbr_fd(va_arg(args, unsigned int), 1, &len);
 			}
 			else if (s[i + 1] == 'x')
 			{
 				ft_putnbrbase_fd(va_arg(args, unsigned int), "0123456789abcdef",
-					1);
+					1, &len);
 			}
 			else if (s[i + 1] == 'X')
 			{
 				ft_putnbrbase_fd(va_arg(args, unsigned int), "0123456789ABCDEF",
-					1);
+					1, &len);
 			}
 			else if (s[i + 1] == 'p')
 			{
-				write(1, "0x", 2);
-				ft_putnbrbase_fd(va_arg(args, long), "0123456789abcdef", 1);
+				len = len + write(1, "0x", 2);
+				ft_putnbrbase_fd(va_arg(args, long), "0123456789abcdef", 1,
+					&len);
 			}
 			i = i + 2;
 		}
-		else if (s[i] == '%' )
+		else if (s[i] == '%')
 		{
-			write(1  , "%" , 1);
+			len = len + write(1, "%", 1);
 			i = i + 2;
 		}
 		else
 		{
-			write(1, &s[i], 1);
+			len = len + write(1, &s[i], 1);
 			i++;
 		}
 	}
-	return (ft_strlen(s));
+	return (len);
 }
