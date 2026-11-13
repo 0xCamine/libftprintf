@@ -6,11 +6,11 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 12:55:19 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/12 19:18:22 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:38:47 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 void	ft_putstr_fd(char *s, int fd, int *len)
 {

@@ -3,27 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouferr <@student.1337.ma>                +#+  +:+       +#+        */
+/*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 15:51:01 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 11:24:22 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 13:16:37 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "../ft_printf.h"
 
-void	ft_putnbrbase_fd(long number, char *base, int fd, int *len)
+void	ft_putnbrbase_fd(unsigned long number, char *base, int fd, int *len)
 {
-	int	base_len;
+	unsigned long	base_len;
 
-	// printf("number = %ld \n" , number);
 	base_len = ft_strlen(base);
-	if (number < 0)
-	{
-		number *= -1;
-		*len = *len + write(fd, "-", 1);
-	}
 	if (number >= base_len)
 		ft_putnbrbase_fd(number / base_len, base, fd, len);
 	*len = *len + write(fd, &base[number % base_len], 1);

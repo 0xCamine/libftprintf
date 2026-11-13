@@ -6,11 +6,11 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 15:02:56 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/12 19:18:16 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:38:42 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
 void	ft_putnbr_fd(long n, int fd, int *len)
 {

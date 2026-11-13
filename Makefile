@@ -1,13 +1,24 @@
-SRC = ft_printf.c src/*.c
-OBJ = $(SRC:.c=.o)
-LIB = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
-CC = cc
+CC=cc
+NAME=libftprintf.a
+CFLAGS=-Wall -Wextra -Werror
+HEADER = ft_printf.h
+SRC=ft_printf.c utils.c src/*.c
+OBJ=*.o
 
-ALL : $(LIB)
+all: $(NAME)
 
-$(LIB) : $(OBJ)
-	ar r $(LIB) $(OBJ)
+$(NAME): $(OBJ)
+	ar -r $(NAME) $(OBJ)
 
-%.o : %.c
-	CC 
+$(OBJ): $(SRC) $(HEADER)
+	$(CC) $(CFLAGS) -c $(SRC)
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all	
+
+.PHONY: clean  
