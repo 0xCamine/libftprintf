@@ -6,27 +6,11 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 14:18:42 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:23:32 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	ft_isflag(char c)
-{
-	char	*flags;
-	int		i;
-
-	flags = "cspdiuxX";
-	i = 0;
-	while (flags[i])
-	{
-		if (c == flags[i])
-			return (i);
-		i++;
-	}
-	return (-1);
-}
 
 int	ft_printf(const char *s, ...)
 {

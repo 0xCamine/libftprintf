@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:07:40 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 14:20:05 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:15:57 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_print_hexptr(const char *s, int i, int *len, va_list args);
 void	ft_print_unsdeicmal(const char *s, int i, int *len, va_list args);
 void	ft_print_strchar(const char *s, int i, int *len, va_list args);
 void	ft_singleprint(const char *s, int *i, int *len);
+int		ft_isflag(char c);
 
 int		ft_printf(const char *s, ...);
 

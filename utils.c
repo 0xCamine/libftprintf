@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 12:09:53 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 14:26:32 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 15:23:40 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,35 @@ void	ft_print_strchar(const char *s, int i, int *len, va_list args)
 
 void	ft_singleprint(const char *s, int *i, int *len)
 {
-	if (s[*i] == '%')
+	if (s[*i] == '%' && s[(*i) + 1] == '%')
 	{
 		*len = *len + write(1, "%", 1);
 		*i = *i + 2;
+	}
+	else if (s[*i] == '%' && ft_isflag(s[(*i) + 1]) == -1)
+	{
+		*i = *i + 2;
+		return ;
 	}
 	else
 	{
 		*len = *len + write(1, &s[*i], 1);
 		(*i)++;
 	}
+}
+
+int	ft_isflag(char c)
+{
+	char	*flags;
+	int		i;
+
+	flags = "cspdiuxX";
+	i = 0;
+	while (flags[i])
+	{
+		if (c == flags[i])
+			return (i);
+		i++;
+	}
+	return (-1);
 }
