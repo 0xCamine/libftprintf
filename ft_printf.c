@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abouferr <@student.1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/12 19:32:54 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:04:44 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,13 @@ int	ft_printf(const char *s, ...)
 {
 	int		i;
 	int		len;
+	char	*param;
+	long	address;
 	va_list	args;
 
 	va_start(args, s);
+	param = NULL;
+	address = 0;
 	len = 0;
 	i = 0;
 	while (s[i])
@@ -44,7 +48,11 @@ int	ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == 's')
 			{
-				ft_putstr_fd(va_arg(args, char *), 1, &len);
+				param = va_arg(args, char *);
+				if (param == NULL)
+					len = len + write(1, "(null)", 6);
+				else
+					ft_putstr_fd(param, 1, &len);
 			}
 			else if (s[i + 1] == 'c')
 			{
@@ -70,9 +78,14 @@ int	ft_printf(const char *s, ...)
 			}
 			else if (s[i + 1] == 'p')
 			{
-				len = len + write(1, "0x", 2);
-				ft_putnbrbase_fd(va_arg(args, long), "0123456789abcdef", 1,
-					&len);
+				address = va_arg(args, long);
+				if (address == 0)
+					len = len + write(1, "(nil)", 5);
+				else
+				{
+					len = len + write(1, "0x", 2);
+					ft_putnbrbase_fd(address, "0123456789abcdef", 1, &len);
+				}
 			}
 			i = i + 2;
 		}
@@ -87,5 +100,7 @@ int	ft_printf(const char *s, ...)
 			i++;
 		}
 	}
+	if (len < 0)
+		return (-1);
 	return (len);
 }

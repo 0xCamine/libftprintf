@@ -12,12 +12,13 @@ int	main(void)
 {
 	int ret1;
 	int ret2;
+    close(1);
+	ret1 = printf("%s ", "qqqq" );
+	fprintf(stderr,"\nPRINTF RETURN    : %d\n\n", ret1);
  
-	ret1 = printf("%p  %p", &ret1 , NULL );
-	printf("\nPRINTF RETURN    : %d\n\n", ret1);
- 
-	ret2 = ft_printf("%p", &ret1);
-	printf("\nFT_PRINTF RETURN : %d\n\n", ret2);
+	 
+	ret2 = ft_printf("%s ", "qqqq" );
+	fprintf(stderr,"\nFT_PRINTF RETURN : %d\n\n", ret2);
  
 
 	return (0);
