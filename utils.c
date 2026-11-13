@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/13 12:09:53 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 15:23:40 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 18:55:07 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_print_hexptr(const char *s, int i, int *len, va_list args)
 	}
 	else if (s[i + 1] == 'p')
 	{
-		address = va_arg(args, long);
+		address = va_arg(args, unsigned long);
 		if (address == 0)
 		{
 			*len = *len + write(1, "(nil)", 5);

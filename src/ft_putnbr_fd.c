@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 15:02:56 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 12:38:42 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 19:00:30 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	ft_putnbr_fd(long n, int fd, int *len)
 	char	nb;
 
 	nb = 0;
-	if (n == -2147483648)
-	{
-		*len = *len + write(fd, "-2147483648", 11);
-		return ;
-	}
 	if (n < 0)
 	{
 		n = n * (-1);
