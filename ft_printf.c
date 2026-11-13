@@ -6,7 +6,7 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 15:23:32 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 18:33:21 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_printf(const char *s, ...)
 	va_start(args, s);
 	len = 0;
 	i = 0;
-	while (s[i])
+	while (s[i] && s)
 	{
 		if (s[i] == '%' && ft_isflag(s[i + 1]) != -1)
 		{
@@ -35,7 +35,8 @@ int	ft_printf(const char *s, ...)
 		}
 		else
 			ft_singleprint(s, &i, &len);
+		if (len < 0)
+			return (va_end(args), -1);
 	}
-	va_end(args);
-	return (len);
+	return (va_end(args), len);
 }
