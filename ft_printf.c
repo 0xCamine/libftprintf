@@ -6,14 +6,14 @@
 /*   By: abouferr <@student.1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 11:04:44 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:24:13 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_isflag(char c)
+static int	ft_isflag(char c)
 {
 	char	*flags;
 	int		i;

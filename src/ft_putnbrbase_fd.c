@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abouferr <@student.1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 15:51:01 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/12 19:18:02 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/13 11:24:22 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,3 @@ void	ft_putnbrbase_fd(long number, char *base, int fd, int *len)
 		ft_putnbrbase_fd(number / base_len, base, fd, len);
 	*len = *len + write(fd, &base[number % base_len], 1);
 }
-
-// 1337  --> 0539  0123456789ABCDEF
