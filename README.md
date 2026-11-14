@@ -77,7 +77,7 @@ Run the executable:
 AI tools were used as learning and development assistants during this project.
 
 They helped with:
-- Understanding variadic functions (`va_list`, `va_start`, `va_arg`, `va_copy`, and `va_end`).
+- Understanding variadic functions (`va_list`, `va_start`, `va_arg`,  and `va_end`).
 - Understanding the behavior of the standard `printf()` function.
 - Clarifying format specifiers and edge cases.
 - Identifying potential bugs and understanding unexpected test results.
