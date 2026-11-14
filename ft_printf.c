@@ -6,14 +6,13 @@
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 11:15:46 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 23:34:01 by abouferr         ###   ########.fr       */
+/*   Updated: 2026/11/14 11:49:11 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_handle_conversion(const char *s, int i, int *len,
-		va_list *args)
+static void	ft_handle_conversion(const char *s, int i, int *len, va_list *args)
 {
 	if (s[i + 1] == 'd' || s[i + 1] == 'i' || s[i + 1] == 'u')
 		ft_print_unsdeicmal(s, i, len, args);
@@ -47,11 +46,7 @@ int	ft_printf(const char *s, ...)
 			i += 2;
 		}
 		else
-		{
-			ft_putchar_fd(s[i], 1, &len);
-			i++;
-		}
+			ft_putchar_fd(s[i++], 1, &len);
 	}
-	va_end(args);
-	return (len);
+	return (va_end(args), len);
 }
