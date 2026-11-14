@@ -19,13 +19,13 @@
 void	ft_putchar_fd(char c, int fd, int *len);
 void	ft_putstr_fd(char *s, int fd, int *len);
 void	ft_putnbr_fd(long n, int fd, int *len);
+void	ft_putunbr_fd(unsigned int n, int fd, int *len);
 void	ft_putnbrbase_fd(unsigned long number, char *base, int fd, int *len);
 size_t	ft_strlen(const char *s);
 
-void	ft_print_hexptr(const char *s, int i, int *len, va_list args);
-void	ft_print_unsdeicmal(const char *s, int i, int *len, va_list args);
-void	ft_print_strchar(const char *s, int i, int *len, va_list args);
-void	ft_singleprint(const char *s, int *i, int *len);
+void	ft_print_hexptr(const char *s, int i, int *len, va_list *args);
+void	ft_print_unsdeicmal(const char *s, int i, int *len, va_list *args);
+void	ft_print_strchar(const char *s, int i, int *len, va_list *args);
 int		ft_isflag(char c);
 
 int		ft_printf(const char *s, ...);

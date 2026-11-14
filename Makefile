@@ -2,7 +2,7 @@ CC=cc
 NAME=libftprintf.a
 CFLAGS=-Wall -Wextra -Werror
 HEADER = ft_printf.h
-SRC=ft_printf.c utils.c src/*.c
+SRC=ft_printf.c utils.c libft/*.c
 OBJ=*.o
 
 all: $(NAME)

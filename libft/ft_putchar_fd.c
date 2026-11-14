@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouferr <abouferr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/12 15:51:01 by abouferr          #+#    #+#             */
-/*   Updated: 2026/11/13 13:16:37 by abouferr         ###   ########.fr       */
+/*   Created: 2026/10/18 17:58:48 by abouferr          #+#    #+#             */
+/*   Updated: 2026/11/13 12:38:59 by abouferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_putnbrbase_fd(unsigned long number, char *base, int fd, int *len)
+void	ft_putchar_fd(char c, int fd, int *len)
 {
-	unsigned long	base_len;
+	int	ret;
 
-	base_len = ft_strlen(base);
-	if (number >= base_len)
-		ft_putnbrbase_fd(number / base_len, base, fd, len);
-	*len = *len + write(fd, &base[number % base_len], 1);
+	if (*len < 0)
+		return ;
+	ret = write(fd, &c, 1);
+	if (ret < 0)
+		*len = -1;
+	else
+		*len += ret;
 }

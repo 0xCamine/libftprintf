@@ -12,84 +12,51 @@
 
 #include "ft_printf.h"
 
-void	ft_print_hexptr(const char *s, int i, int *len, va_list args)
+void	ft_print_hexptr(const char *s, int i, int *len, va_list *args)
 {
 	unsigned long	address;
 
 	if (s[i + 1] == 'x')
-	{
-		ft_putnbrbase_fd(va_arg(args, unsigned int), "0123456789abcdef", 1,
-			len);
-	}
+		ft_putnbrbase_fd(va_arg(*args, unsigned int),
+			"0123456789abcdef", 1, len);
 	else if (s[i + 1] == 'X')
-	{
-		ft_putnbrbase_fd(va_arg(args, unsigned int), "0123456789ABCDEF", 1,
-			len);
-	}
+		ft_putnbrbase_fd(va_arg(*args, unsigned int),
+			"0123456789ABCDEF", 1, len);
 	else if (s[i + 1] == 'p')
 	{
-		address = va_arg(args, unsigned long);
+		address = (unsigned long)va_arg(*args, void *);
 		if (address == 0)
-		{
-			*len = *len + write(1, "(nil)", 5);
-		}
+			ft_putstr_fd("(nil)", 1, len);
 		else
 		{
-			*len = *len + write(1, "0x", 2);
+			ft_putstr_fd("0x", 1, len);
 			ft_putnbrbase_fd(address, "0123456789abcdef", 1, len);
 		}
 	}
 }
 
-void	ft_print_unsdeicmal(const char *s, int i, int *len, va_list args)
+void	ft_print_unsdeicmal(const char *s, int i, int *len, va_list *args)
 {
-	if (s[i + 1] == 'd' || (s[i + 1] == 'i'))
-	{
-		ft_putnbr_fd(va_arg(args, int), 1, len);
-	}
+	if (s[i + 1] == 'd' || s[i + 1] == 'i')
+		ft_putnbr_fd((long)va_arg(*args, int), 1, len);
 	else if (s[i + 1] == 'u')
-	{
-		ft_putnbr_fd(va_arg(args, unsigned int), 1, len);
-	}
+		ft_putunbr_fd(va_arg(*args, unsigned int), 1, len);
 }
 
-void	ft_print_strchar(const char *s, int i, int *len, va_list args)
+void	ft_print_strchar(const char *s, int i, int *len, va_list *args)
 {
 	char	*address;
 
 	if (s[i + 1] == 's')
 	{
-		address = va_arg(args, char *);
-		if (address == NULL)
-		{
-			*len = *len + write(1, "(null)", 6);
-		}
+		address = va_arg(*args, char *);
+		if (!address)
+			ft_putstr_fd("(null)", 1, len);
 		else
 			ft_putstr_fd(address, 1, len);
 	}
 	else if (s[i + 1] == 'c')
-	{
-		ft_putchar_fd(va_arg(args, int), 1, len);
-	}
-}
-
-void	ft_singleprint(const char *s, int *i, int *len)
-{
-	if (s[*i] == '%' && s[(*i) + 1] == '%')
-	{
-		*len = *len + write(1, "%", 1);
-		*i = *i + 2;
-	}
-	else if (s[*i] == '%' && ft_isflag(s[(*i) + 1]) == -1)
-	{
-		*i = *i + 2;
-		return ;
-	}
-	else
-	{
-		*len = *len + write(1, &s[*i], 1);
-		(*i)++;
-	}
+		ft_putchar_fd((char)va_arg(*args, int), 1, len);
 }
 
 int	ft_isflag(char c)
